@@ -13,11 +13,3 @@ void draw() {
   background(200);
   player.display();
 }
-
-void keyPressed() {
-  if(key == 'A' || key == 'a') {
-    player.X -= 10;
-  } else if(key == 'D' || key == 'd') {
-    player.X += 10;
-  }
-}
