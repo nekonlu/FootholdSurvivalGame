@@ -1,6 +1,6 @@
 class Player {
   int X, Y;
-  float speedX, speedY;
+  float speedX, speedY;    // px/(1/framerate)
   float G;      // Gravity Acceleration
   float jumpV0;  // Jump Initical Velocity
   int groundY;
