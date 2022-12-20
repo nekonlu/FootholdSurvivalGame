@@ -1,58 +1,66 @@
 class Player {
   int X, Y;
-  float speedX, speedY;    // px/(1/framerate)
+  int H, W;
+  int bottom, left, right;
+  float speedX, speedY;    // unit: px/(1/framerate)
   float G;      // Gravity Acceleration
   float jumpV0;  // Jump Initical Velocity
   int groundY;
   
   Player() {
+    // Set Parameter
     X = width / 2;
     Y = height / 2 - 100;
+    H = 30;
+    W = 30;
     speedX = 0;
     speedY = 1.0;
     G = 1.1;
     jumpV0 = 10.0;
-    groundY = Y + 100;
+    groundY = 200;
   }
   
   void display() {
-    keyinput();
     rectMode(CENTER);
+    detectCollision();
+    keyAction();
+    move();
     rect(X, Y, 30, 30);
-    gravity();
+    
+    println(speedY);
   }
   
   void move() {
     X += speedX;
     Y += speedY;
-  }
-  
-  void jump() {
-    
+    bottom = Y + (H / 2);
+    left = X - (W / 2);
+    right = X + (W / 2);
   }
   
   void gravity() {
-    if(Y >= groundY) {
-      Y = groundY;
-      speedY = 1.0;
-    } else {
-      speedY *= G;
-      Y += speedY;
-    }
+    speedY += G;
   }
   
-  void keyinput() {
+  void detectCollision() {
+    if(bottom >= groundY) {
+      speedY = 0;
+    } else {
+      gravity();
+    }
+  }
+          
+  void keyAction() {
     if(keyPressed) {
-      speedX = 10;
-      if(key == 'a' || key == 'A') {
-        X -= speedX;
-      }
-      if(key == 'd' || key == 'D') {
-        X += speedX;
+      if(key == 'a') {
+        speedX = -10;
+      } else if(key == 'd') {
+        speedX = 10;
+      } else if(key == ' ') {
+        speedY = -5;
       }
     } else {
       speedX = 0;
     }
-    println(speedX);
   }
 }
