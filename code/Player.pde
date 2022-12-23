@@ -16,7 +16,7 @@ class Player {
     W = 30;
     speedX = 0;
     speedY = 1.0;
-    G = 1.1;
+    G = 1.01;
     jumpV0 = -12.0;
     jumpFC = 0;
     groundY = 200;
@@ -47,6 +47,7 @@ class Player {
   void detectCollision() {
     if(bottom >= groundY) {
       speedY = 0;
+      Y = groundY - (H / 2);
     } else {
       gravity();
     }
@@ -54,12 +55,8 @@ class Player {
           
   void keyAction() {
     if(keyPressed) {
-      if(key == 'a') {
-        moveLeft();
-      } else if(key == 'd') {
-        moveRight();
-      }
-      
+      moveLeft();
+      moveRight();
       jump();
       
     } else {
@@ -68,11 +65,15 @@ class Player {
   }
   
   void moveLeft() {
-    speedX = -10;
+    if(key == 'a') {
+      speedX = -10;
+    }
   }
   
   void moveRight() {
-    speedX = 10;
+    if(key == 'd') {
+      speedX = 10;
+    }
   }
   
   void jump() {
