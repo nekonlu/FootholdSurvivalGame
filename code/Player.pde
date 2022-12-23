@@ -1,13 +1,13 @@
 class Player {
-  int X, Y;
+  float X, Y;
   int H, W;
-  int bottom, left, right;
+  float bottom, left, right;
   float speedX, speedY;    // unit: px/(1/framerate)
   float G;      // Gravity Acceleration
   float jumpV0;  // Jump Initical Velocity
   int jumpFC;    // FrameCount at the time of jumping
   int groundY;
-  
+
   Player() {
     // Set Parameter
     X = width / 2;
@@ -21,17 +21,16 @@ class Player {
     jumpFC = 0;
     groundY = 200;
   }
-  
+
   void display() {
     rectMode(CENTER);
     detectCollision();
     keyAction();
     move();
     rect(X, Y, 30, 30);
-    
-    println(speedY);
+    rect(100, 170, 30, 30);
   }
-  
+
   void move() {
     X += speedX;
     Y += speedY;
@@ -39,61 +38,74 @@ class Player {
     left = X - (W / 2);
     right = X + (W / 2);
   }
-  
+
   void gravity() {
     speedY += G;
   }
-  
+
   void detectCollision() {
-    
-    if(left <= 0) {
+
+    boolean hitLeft = isHit(0, 0, 0, 1000);
+    boolean hitRight = isHit(width, 0, 0, 1000);
+    boolean hitGround = isHit(0, 200, 1000, 0);
+
+    println(hitGround);
+
+
+    if (hitLeft) {
       X = W / 2;
     }
-    
-    if(right >= width) {
+
+    if (hitRight) {
       X = width - (W / 2);
     }
-    
-    if(bottom >= groundY) {
+
+    if (hitGround) {
       speedY = 0;
       Y = groundY - (H / 2);
     } else {
       gravity();
     }
   }
-          
+
   void keyAction() {
-    if(keyPressed) {
+    if (keyPressed) {
       moveLeft();
       moveRight();
       jump();
-      
     } else {
       speedX = 0;
     }
   }
-  
+
   void moveLeft() {
-    if(key == 'a') {
+    if (key == 'a') {
       speedX = -10;
     }
   }
-  
+
   void moveRight() {
-    if(key == 'd') {
+    if (key == 'd') {
       speedX = 10;
     }
   }
-  
+
   void jump() {
     // FIXME: Magic number
-    if(frameCount >= jumpFC + 30) {
-      if(key == ' ') {
+    if (frameCount >= jumpFC + 30) {
+      if (key == ' ') {
         speedY = jumpV0;
         jumpFC = frameCount;
       }
     }
   }
-  
-  
+
+  boolean isHit(float ex, float ey, float ew, float eh) {
+    if (X + W / 2 >= ex - ew / 2 && X - W / 2 <= ex + ew / 2) {
+      if (Y + H / 2 >= ey - eh / 2 && Y - H / 2 <= ey + eh / 2) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
