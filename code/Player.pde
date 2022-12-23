@@ -45,6 +45,15 @@ class Player {
   }
   
   void detectCollision() {
+    
+    if(left <= 0) {
+      X = W / 2;
+    }
+    
+    if(right >= width) {
+      X = width - (W / 2);
+    }
+    
     if(bottom >= groundY) {
       speedY = 0;
       Y = groundY - (H / 2);
