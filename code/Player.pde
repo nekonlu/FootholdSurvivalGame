@@ -5,6 +5,7 @@ class Player {
   float speedX, speedY;    // unit: px/(1/framerate)
   float G;      // Gravity Acceleration
   float jumpV0;  // Jump Initical Velocity
+  int jumpFC;    // FrameCount at the time of jumping
   int groundY;
   
   Player() {
@@ -16,7 +17,8 @@ class Player {
     speedX = 0;
     speedY = 1.0;
     G = 1.1;
-    jumpV0 = 10.0;
+    jumpV0 = -12.0;
+    jumpFC = 0;
     groundY = 200;
   }
   
@@ -53,14 +55,35 @@ class Player {
   void keyAction() {
     if(keyPressed) {
       if(key == 'a') {
-        speedX = -10;
+        moveLeft();
       } else if(key == 'd') {
-        speedX = 10;
-      } else if(key == ' ') {
-        speedY = -5;
+        moveRight();
       }
+      
+      jump();
+      
     } else {
       speedX = 0;
     }
   }
+  
+  void moveLeft() {
+    speedX = -10;
+  }
+  
+  void moveRight() {
+    speedX = 10;
+  }
+  
+  void jump() {
+    // FIXME: Magic number
+    if(frameCount >= jumpFC + 30) {
+      if(key == ' ') {
+        speedY = jumpV0;
+        jumpFC = frameCount;
+      }
+    }
+  }
+  
+  
 }
