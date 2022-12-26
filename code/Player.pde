@@ -16,7 +16,7 @@ class Player {
     W = 30;
     speedX = 0;
     speedY = 1.0;
-    G = 1.01;
+    G = 1.1;
     jumpV0 = -12.0;
     jumpFC = 0;
     groundY = 200;
