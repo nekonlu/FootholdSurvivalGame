@@ -15,4 +15,5 @@ void draw() {
   player.display();
   footholds.display();
   player.groundY = footholds.getGroundY(player.X);
+  footholds.fallFH(2);
 }

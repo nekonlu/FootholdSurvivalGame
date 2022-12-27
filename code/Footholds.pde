@@ -2,6 +2,7 @@ class Footholds {
   int separateFH;
   int fallingFH_idx;
   int initGroundY;
+  int fallSpeed;
   Foothold[] FHProperty;
    
   Footholds() {
@@ -10,6 +11,18 @@ class Footholds {
     initGroundY = 200;
     FHProperty = new Foothold[separateFH];
     initFHProperty();
+  }
+  
+  
+  
+  void display() {
+    for(int i = 0; i < separateFH; i++) {
+      line(FHProperty[i].sX, FHProperty[i].sY, FHProperty[i].fX, FHProperty[i].fY);
+    }
+  }
+  
+  void move() {
+    
   }
   
   void initFHProperty() {
@@ -23,22 +36,18 @@ class Footholds {
       FHProperty[i].fY = initGroundY;
       oneFH_sX += oneFH_len;
     }
+    fallSpeed = 1;
   }
   
-  void display() {
-    FHProperty[0].sY -= 0.1;
-    FHProperty[0].fY -= 0.1;
-    for(int i = 0; i < separateFH; i++) {
-      line(FHProperty[i].sX, FHProperty[i].sY, FHProperty[i].fX, FHProperty[i].fY);
-    }
-  }
-  
-  void move() {
-    
+  void fallFH(int fallFH_idx) {
+    FHProperty[fallFH_idx].sY += fallSpeed;
+    FHProperty[fallFH_idx].fY += fallSpeed;
   }
   
   float getGroundY(float playerX) {
     int playerOnFH_idx = (int)playerX / 100;
     return FHProperty[playerOnFH_idx].sY;
   }
+  
+  
 }
