@@ -11,6 +11,7 @@ class Footholds {
     initGroundY = 200;
     FHProperty = new Foothold[separateFH];
     initFHProperty();
+    fallSpeed = 3;
   }
   
   
@@ -36,7 +37,6 @@ class Footholds {
       FHProperty[i].fY = initGroundY;
       oneFH_sX += oneFH_len;
     }
-    fallSpeed = 1;
   }
   
   void fallFH(int fallFH_idx) {
