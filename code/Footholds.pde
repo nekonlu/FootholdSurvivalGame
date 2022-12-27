@@ -6,7 +6,8 @@ class Footholds {
   Foothold[] FHProperty;
    
   Footholds() {
-    separateFH = 5;
+    // パラメーター
+    separateFH = 10;
     fallingFH_idx = 0;
     initGroundY = 200;
     FHProperty = new Foothold[separateFH];
@@ -45,7 +46,7 @@ class Footholds {
   }
   
   float getGroundY(float playerX) {
-    int playerOnFH_idx = (int)playerX / 100;
+    int playerOnFH_idx = (int)playerX / (width / separateFH);
     return FHProperty[playerOnFH_idx].sY;
   }
 }

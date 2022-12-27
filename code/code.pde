@@ -1,4 +1,7 @@
+
 import java.util.Random;
+
+int FRAMERATE = 60;
 
 int X = 0;
 int Y = 100;
@@ -25,8 +28,8 @@ void draw() {
   // そして取得した値をplayer.groundYに代入
   player.groundY = footholds.getGroundY(player.X);
   
-  if(frameCount % 120 == 0) {
-    fall_idx = rand.nextInt(5);
+  if(frameCount % 3 * FRAMERATE == 0) {
+    fall_idx = rand.nextInt(footholds.separateFH);
     footholds.initFHProperty();
   } else {
     footholds.fallFH(fall_idx);
