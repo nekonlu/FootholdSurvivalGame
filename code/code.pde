@@ -20,6 +20,9 @@ void draw() {
   background(200);
   player.display();
   footholds.display();
+  
+  // プレイヤー直下の地面のY座標取得のため、footholds.getGroundY()を実行
+  // そして取得した値をplayer.groundYに代入
   player.groundY = footholds.getGroundY(player.X);
   
   if(frameCount % 120 == 0) {

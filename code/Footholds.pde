@@ -48,6 +48,4 @@ class Footholds {
     int playerOnFH_idx = (int)playerX / 100;
     return FHProperty[playerOnFH_idx].sY;
   }
-  
-  
 }
