@@ -24,11 +24,14 @@ class Player {
 
   void display() {
     rectMode(CENTER);
-    detectCollision();
+    
     keyAction();
     move();
+    detectCollision();
+
     rect(X, Y, 30, 30);
     rect(100, 170, 30, 30);
+    line(0, groundY, width, groundY);
   }
 
   void move() {
@@ -47,9 +50,7 @@ class Player {
 
     boolean hitLeft = isHit(0, 0, 0, 1000);
     boolean hitRight = isHit(width, 0, 0, 1000);
-    boolean hitGround = isHit(0, 200, 1000, 0);
-
-    println(hitGround);
+    boolean hitGround = isHit(0, groundY, 1000, 0);
 
 
     if (hitLeft) {
