@@ -13,4 +13,6 @@ void setup() {
 void draw() {
   background(200);
   player.display();
+  footholds.display();
+  player.groundY = footholds.getGroundY(player.X);
 }

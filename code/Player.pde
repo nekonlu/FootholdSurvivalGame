@@ -6,7 +6,7 @@ class Player {
   float G;      // Gravity Acceleration
   float jumpV0;  // Jump Initical Velocity
   int jumpFC;    // FrameCount at the time of jumping
-  int groundY;
+  float groundY;
 
   Player() {
     // Set Parameter
@@ -30,8 +30,6 @@ class Player {
     detectCollision();
 
     rect(X, Y, 30, 30);
-    rect(100, 170, 30, 30);
-    line(0, groundY, width, groundY);
   }
 
   void move() {
