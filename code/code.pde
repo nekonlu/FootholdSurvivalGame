@@ -26,12 +26,16 @@ void draw() {
   
   // プレイヤー直下の地面のY座標取得のため、footholds.getGroundY()を実行
   // そして取得した値をplayer.groundYに代入
-  player.groundY = footholds.getGroundY(player.X);
+  player.groundY = footholds.getGroundY(player.X); 
   
-  if(frameCount % (fallOneFHinterval_sec * FRAMERATE) == 0) {
+  
+}
+
+void fallFH() {
+  if(frameCount % (int)(fallOneFHinterval_sec * FRAMERATE) == 0) {
     fall_idx = rand.nextInt(footholds.separateFH);
     footholds.initFHProperty();
-    fallOneFHinterval_sec -= 0.1;
+    fallOneFHinterval_sec -= 0.01;
     println(fallOneFHinterval_sec);
   } else {
     footholds.fallFH(fall_idx);
