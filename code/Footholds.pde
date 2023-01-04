@@ -1,9 +1,17 @@
+import java.util.Random;
+import java.util.Collections;
+
 class Footholds {
   int separateFH;
   int fallingFH_idx;
   int initGroundY;
   int fallSpeed;
+  float fallWaitTime_sec;
+  int maxFallFH_num;
+  int currentFallFH_num;
   Foothold[] FHProperty;
+  ArrayList<Integer> list;
+  ArrayList<Integer> fallFHs_idx;
    
   Footholds() {
     // パラメーター
@@ -13,6 +21,12 @@ class Footholds {
     FHProperty = new Foothold[separateFH];
     initFHProperty();
     fallSpeed = 3;
+    fallWaitTime_sec = 1.0;
+    maxFallFH_num = separateFH - 1;
+    currentFallFH_num = maxFallFH_num - 1;
+
+    list = new ArrayList<Integer>();
+    fallFHs_idx = new ArrayList<Integer>();
   }
   
   
@@ -21,10 +35,6 @@ class Footholds {
     for(int i = 0; i < separateFH; i++) {
       line(FHProperty[i].sX, FHProperty[i].sY, FHProperty[i].fX, FHProperty[i].fY);
     }
-  }
-  
-  void move() {
-    
   }
   
   void initFHProperty() {
@@ -40,9 +50,24 @@ class Footholds {
     }
   }
   
-  void fallFH(int fallFH_idx) {
-    FHProperty[fallFH_idx].sY += fallSpeed;
-    FHProperty[fallFH_idx].fY += fallSpeed;
+  void fallFHs() {
+    
+    for(int i = 0 ; i < separateFH; i++) {
+        list.add(i);
+    }
+    Collections.shuffle(list);
+    
+    for(int i = 0; i < currentFallFH_num; i++) {
+      fallFHs_idx.add(list.get(i));
+    }
+
+    for(int i = 0; i < currentFallFH_num; i++) {
+      FHProperty[fallFHs_idx.get(i)].sY += fallSpeed;
+      FHProperty[fallFHs_idx.get(i)].fY += fallSpeed;
+    }
+
+    // FHProperty[fallFH_idx].sY += fallSpeed;
+    // FHProperty[fallFH_idx].fY += fallSpeed;
   }
   
   float getGroundY(float playerX) {
