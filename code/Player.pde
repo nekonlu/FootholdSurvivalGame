@@ -7,6 +7,7 @@ class Player {
   float jumpV0;  // Jump Initical Velocity
   int jumpFC;    // FrameCount at the time of jumping
   float groundY;
+  int playerSpeed;
 
   Player() {
     // Set Parameter
@@ -20,6 +21,7 @@ class Player {
     jumpV0 = -12.0;
     jumpFC = 0;
     groundY = 200;
+    playerSpeed = 10;
   }
 
   void display() {
@@ -79,13 +81,13 @@ class Player {
 
   void moveLeft() {
     if (key == 'a') {
-      speedX = -10;
+      speedX = -playerSpeed;
     }
   }
 
   void moveRight() {
     if (key == 'd') {
-      speedX = 10;
+      speedX = playerSpeed;
     }
   }
 
