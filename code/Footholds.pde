@@ -9,6 +9,7 @@ class Footholds {
   float fallWaitTime_sec;
   int maxFallFH_num;
   int currentFallFH_num;
+  int fallCount;
   Foothold[] FHProperty;
   ArrayList<Integer> list;
   ArrayList<Integer> fallFHs_idx;
@@ -18,12 +19,13 @@ class Footholds {
     separateFH = 10;
     fallingFH_idx = 0;
     initGroundY = 200;
-    FHProperty = new Foothold[separateFH];
+    FHProperty = new Foothold[10];
     initFHProperty();
     fallSpeed = 3;
     fallWaitTime_sec = 1.0;
     maxFallFH_num = separateFH - 1;
-    currentFallFH_num = maxFallFH_num - 1;
+    currentFallFH_num = maxFallFH_num;
+    fallCount = 0;
 
     list = new ArrayList<Integer>();
     fallFHs_idx = new ArrayList<Integer>();
@@ -38,6 +40,7 @@ class Footholds {
   }
   
   void initFHProperty() {
+    fallCount += 1;
     int oneFH_sX = 0;
     int oneFH_len = width / separateFH;
     for(int i = 0; i < separateFH; i++) {

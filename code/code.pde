@@ -4,22 +4,23 @@ import java.util.Collections;
 int FRAMERATE = 60;
 
 String gameState = "";
-
 int fall_idx;
-float fallFHinterval_sec = 3.0;
 
+//  インスタンスの生成
 Player player;
 Footholds footholds;
 
 // 難易度パラメーター
-int fallSpeed = 5;
+int fallSpeed = 3;
 int playerSpeed = 5;
 int separateFH = 10;
+int currentFallFH_num = 3;
+float fallFHinterval_sec = 3;
 
 Random rand = new Random();
 
 void setup() {
-  size(500, 400); 
+  size(500, 400);
   player = new Player();
   footholds = new Footholds();
 
@@ -27,14 +28,15 @@ void setup() {
   footholds.fallSpeed = fallSpeed;
   player.playerSpeed = playerSpeed;
   footholds.separateFH = separateFH;
+  footholds.currentFallFH_num = currentFallFH_num;
 }
 
 void draw() {
   background(200);
 
   // スコアテキスト
-
   player.display();
+  dispFallCount();
   footholds.display();
 
   gameover();
@@ -56,6 +58,10 @@ void gameover() {
   textSize(64);
   textAlign(CENTER);
   text(gameState, width / 2, height / 2);
+}
+
+void dispFallCount() {
+  text(String.valueOf(footholds.fallCount), 100, 100);
 }
 
 void fallFHs() {
