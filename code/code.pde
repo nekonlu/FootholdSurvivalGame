@@ -10,7 +10,5 @@ void setup() {
 }
 
 void draw() {
-  
   gameScene.display();
-  
 }
