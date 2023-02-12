@@ -34,6 +34,10 @@ class GameScene {
     footholds = new Footholds();
   
     // 難易度パラメーターの適用
+    updateDiff();
+  }
+  
+  void updateDiff() {
     footholds.fallSpeed = fallSpeed;
     player.playerSpeed = playerSpeed;
     footholds.separateFH = separateFH;
@@ -81,5 +85,22 @@ class GameScene {
     } else {
       footholds.fallFHs();
     }
+  }
+  
+  void initGame() {
+    // footholds
+    footholds.initFHProperty();
+    footholds.init();
+    
+    // GameScene
+    gameState = "";
+    fallSpeed = 3;     
+    playerSpeed = 5;
+    separateFH = 10;
+    currentFallFH_num = 3;
+    fallFHinterval_sec = 3; 
+    
+    // player
+    player.initPlayer();
   }
 }

@@ -23,6 +23,11 @@ class Player {
     groundY = 200;
     playerSpeed = 10;
   }
+  
+  void initPlayer() {
+    X = width / 2;
+    Y = height / 2 - 100;
+  }
 
   void display() {
     rectMode(CENTER);
