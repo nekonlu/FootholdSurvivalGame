@@ -17,7 +17,7 @@ class Player {
     W = 30;
     speedX = 0;
     speedY = 1.0;
-    G = 1.1;
+    G = 1.01;
     jumpV0 = -12.0;
     jumpFC = 0;
     groundY = 200;
@@ -55,7 +55,7 @@ class Player {
 
     boolean hitLeft = isHit(0, 0, 0, 1000);
     boolean hitRight = isHit(width, 0, 0, 1000);
-    boolean hitGround = isHit(0, groundY, 1000, 0);
+    boolean hitGround = isHit(0, groundY, 3000, 0);
 
 
     if (hitLeft) {

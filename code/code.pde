@@ -7,18 +7,19 @@ StartScene startScene;
 String scene = "start";
 
 void setup() {
-  size(500, 400);
+  size(600, 400);
   
   gameScene = new GameScene();
   startScene = new StartScene();
 }
 
 void draw() {
-  background(200);
+  
   if(scene == "start") {
+    background(200);
     startScene.display();
   } else if(scene == "gaming") {
-    gameScene.display(); 
+    gameScene.display();
   }
 }
 
