@@ -36,7 +36,8 @@ class Player {
     move();
     detectCollision();
 
-    rect(X, Y, 30, 30);
+    //rect(X, Y, 30, 30);
+    image(loadImage("player.png"), X, Y - 15, 30, 30);
   }
 
   void move() {

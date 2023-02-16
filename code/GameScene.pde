@@ -101,13 +101,12 @@ class GameScene {
   void levelUp() {
     score += 1;
     if(footholds.fallCount % 5 == 0) {
-      fallFHinterval_sec *= 0.99;
+      fallFHinterval_sec *= 0.90;
       level += 1;
       score += 10;
     }
     if(footholds.fallCount % 10 == 0) {
       currentFallFH_num += 1;
-      level += 1;
       score += 30;
       background -= 30;
     }
@@ -129,6 +128,7 @@ class GameScene {
     fallFHinterval_sec = 3; 
     level = 1;
     score = 0;
+    background = 200;
     
     // player
     player.initPlayer();
